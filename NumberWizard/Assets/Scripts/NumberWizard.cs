@@ -14,31 +14,28 @@ public class NumberWizard : MonoBehaviour
 
     void Start()
     {
-        StartGame();
-    }
-
-    void StartGame()
-    {
-        guess = (max + min) / 2;
-        guessText.text = guess.ToString();
-        max = max + 1;
+        NextGuess();
     }
 
     public void OnPressHigher()
     {
-        min = guess;
+        if(guess + 1 <= max && min < max)
+        {
+            min = guess + 1;
+        }
+        
         NextGuess();
     }
 
     public void OnPressLower()
     {
-        max = guess;
+        max = guess - 1;
         NextGuess();
     }
 
     void NextGuess()
     {
-        guess = (max + min) / 2;
+        guess = Random.Range(min, max);
         guessText.text = guess.ToString();
     }
 }
